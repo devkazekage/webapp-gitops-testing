@@ -32,7 +32,7 @@ provider "argocd" {
   server_addr = "argocd.127.0.0.1.nip.io:80"
   username    = "admin"
   password    = var.argocd_password
-  # insecure    = true
+  insecure    = true
 }
 
 resource "argocd_application" "flask_app" {
