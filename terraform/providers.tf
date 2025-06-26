@@ -27,12 +27,6 @@ provider "helm" {
   }
 }
 
-provider "argocd" {
-  server_addr = "localhost:8080"
-  username    = "admin"
-  password    = var.argocd_password
-  insecure    = true
-}
 
 
 
