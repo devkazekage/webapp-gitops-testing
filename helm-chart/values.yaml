@@ -1,7 +1,16 @@
+replicaCount: 1
+
 image:
   repository: avi070440/flask-app
   tag: latest
 
 service:
+  type: ClusterIP
   port: 80
   targetPort: 5000
+
+ingress:
+  enabled: true
+  host: flask.127.0.0.1.nip.io
+
+

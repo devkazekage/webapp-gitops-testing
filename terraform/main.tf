@@ -1,15 +1,15 @@
-# resource "kubernetes_namespace" "flask" {
-#   metadata {
-#     name = var.app_name
-#   }
-# }
+resource "kubernetes_namespace" "flask" {
+  metadata {
+    name = var.app_name
+  }
+}
 
-# resource "helm_release" "flask" {
-#   name             = var.app_name
-#   chart            = "../helm-chart"
-#   namespace        = kubernetes_namespace.flask.metadata[0].name
-#   create_namespace = false
-# }
+resource "helm_release" "flask" {
+  name             = var.app_name
+  chart            = "../helm-chart"
+  namespace        = kubernetes_namespace.flask.metadata[0].name
+  create_namespace = false
+}
 
 resource "kubernetes_namespace" "argocd" {
   metadata { name = "argocd" }
@@ -29,7 +29,7 @@ resource "helm_release" "argocd" {
 # }
 
 provider "argocd" {
-  server_addr = "localhost:8080"
+  server_addr = "https://argocd.127.0.0.1.nip.io"
   username    = "admin"
   password    = var.argocd_password
   insecure    = true
