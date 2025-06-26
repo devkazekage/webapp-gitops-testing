@@ -1,4 +1,4 @@
-ame: Terraform on Self-Hosted Runner (Docker Desktop)
+name: Terraform on Self-Hosted Runner (Docker Desktop)
 
 on:
   push:
