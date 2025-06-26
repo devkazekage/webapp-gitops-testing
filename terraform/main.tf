@@ -31,7 +31,7 @@ resource "helm_release" "argocd" {
 provider "argocd" {
   server_addr = "localhost:8080"
   username    = "admin"
-  password    = argocd_password
+  password    = var.argocd_password
   insecure    = true
 }
 
