@@ -29,7 +29,7 @@ resource "helm_release" "argocd" {
 # }
 
 provider "argocd" {
-  server_addr = "argocd.127.0.0.1.nip.io:80"
+  server_addr = "argocd.127.0.0.1.nip.io:443"
   username    = "admin"
   password    = var.argocd_password
   insecure    = true
