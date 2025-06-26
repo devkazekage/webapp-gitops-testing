@@ -4,7 +4,7 @@ resource "kubernetes_namespace" "flask" {
   }
 }
 
-resource "helm_release" "flask" {
+resource "helm_release" "flask_app" {
   name             = var.app_name
   chart            = "../helm-chart"
   namespace        = kubernetes_namespace.flask.metadata[0].name
