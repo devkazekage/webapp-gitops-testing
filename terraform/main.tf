@@ -24,9 +24,16 @@ resource "helm_release" "argocd" {
   values     = [file("${path.module}/values/argocd-values.yaml")]
 }
 
-# data "external" "admin_password" {
-#   program = ["bash", "-c", "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d"]
-# }
+data "external" "admin_password" {
+  program = ["${path.module}/get-argocd-password.sh"]
+}
+
+provider "argocd" {
+  server_addr = "localhost:8080"
+  username    = "admin"
+  password    = data.external.admin_password.result["password"]
+  insecure    = true
+}
 
 resource "argocd_application" "flask_app" {
   metadata {
