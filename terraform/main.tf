@@ -31,7 +31,7 @@ data "external" "admin_password" {
 provider "argocd" {
   server_addr = "localhost:8080"
   username    = "admin"
-  password = data.external.admin_password.result["password"]
+  password    = data.external.admin_password.result["password"]
   insecure    = true
 }
 
