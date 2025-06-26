@@ -25,13 +25,7 @@ resource "helm_release" "argocd" {
 }
 
 data "external" "admin_password" {
-  program = [
-    "bash", "-c",
-    <<EOT
-PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d)
-echo "{\"password\": \"\${PASSWORD}\"}"
-EOT
-  ]
+  program = ["${path.module}/get-argocd-password.sh"]
 }
 
 provider "argocd" {
