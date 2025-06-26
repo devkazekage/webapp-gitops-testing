@@ -24,14 +24,14 @@ resource "helm_release" "argocd" {
   values     = [file("${path.module}/values/argocd-values.yaml")]
 }
 
-data "external" "admin_password" {
-  program = ["${path.module}/get-argocd-password.sh"]
-}
+# data "external" "admin_password" {
+#   program = ["${path.module}/get-argocd-password.sh"]
+# }
 
 provider "argocd" {
   server_addr = "localhost:8080"
   username    = "admin"
-  password    = data.external.admin_password.result["password"]
+  password    = argocd_password
   insecure    = true
 }
 
