@@ -1,0 +1,7 @@
+image:
+  repository: avi070440/flask-app
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 5000
